@@ -6,9 +6,9 @@
     <title>Payment Successful</title>
     <style>
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
-            padding: 20px;
+            text-align: center;
+            padding: 50px;
         }
         .container {
             max-width: 400px;
@@ -16,7 +16,7 @@
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
             color: green;
@@ -24,39 +24,43 @@
         p {
             font-size: 16px;
         }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
             padding: 10px 20px;
             font-size: 16px;
-            color: #fff;
-            background-color: #007bff;
-            text-decoration: none;
             border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: none;
+        }
+        button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Payment Successful</h1>
+        <h1>✔ Payment Successful</h1>
         <p>Your payment has been processed successfully.</p>
-        <p>You can now return to the app.</p>
-
-        <!-- Extract deep link parameter from URL -->
-        <script>
-            const urlParams = new URLSearchParams(window.location.search);
-            const deepLink = urlParams.get('deep_link');
-
-            function goBackToApp() {
-                if (deepLink) {
-                    window.location.href = deepLink; // Redirect back to the app
-                } else {
-                    alert("Deep link not provided.");
-                }
-            }
-        </script>
-
-        <a href="javascript:void(0);" class="btn" onclick="goBackToApp()">Go Back to App</a>
+        <p>Click the button below to return to the app.</p>
+        <button id="returnToApp">Return to App</button>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const deepLink = urlParams.get("deep_link");
+            const button = document.getElementById("returnToApp");
+            
+            if (deepLink) {
+                button.style.display = "inline-block";
+                button.addEventListener("click", function() {
+                    window.location.href = deepLink;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
