@@ -5,52 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful</title>
     <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-        }
-        .container {
-            max-width: 400px;
-            margin: auto;
-        }
-        .icon {
-            width: 80px;
-            margin-bottom: 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #00c853;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
+        body { text-align: center; font-family: Arial, sans-serif; padding: 50px; }
+        h1 { color: #00C853; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <img src="success-icon.png" class="icon" alt="Success">
-        <h2>Payment Successful</h2>
-        <p>Your payment was successful. You can now return to the app.</p>
-        <a id="returnButton" class="button">Return to App</a>
-    </div>
+    <h1>Payment Successful</h1>
+    <p>Your payment has been successfully processed.</p>
+    <p>Redirecting you to the app...</p>
 
     <script>
-        // Get the redirect parameter from the URL
         const params = new URLSearchParams(window.location.search);
         const redirectUrl = params.get("redirect");
 
         if (redirectUrl) {
-            // Update the button link dynamically
-            document.getElementById("returnButton").href = redirectUrl;
-        } else {
-            // If no redirect URL is provided, hide the button
-            document.getElementById("returnButton").style.display = "none";
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 3000);
         }
     </script>
-
 </body>
 </html>
